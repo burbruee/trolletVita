@@ -4,7 +4,7 @@ trolletVita is a (simple) game I'm working on for PSVita.
 Still working on getting the basic stuff going.
 
 # Build instructions
-```
+```bash
 git clone https://github.com/burbruee/trolletVita.git
 cd trolletVita
 cmake .
