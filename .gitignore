@@ -1,0 +1,7 @@
+#ignore build files and dirs
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+obj/*.o
+trolletVita*

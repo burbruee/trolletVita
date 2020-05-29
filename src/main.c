@@ -13,8 +13,8 @@
 #define BLUE RGBA8(0, 0, 255, 255)
 #define WHITE RGBA8(255, 255, 255, 255)
 
-extern unsigned char _binary_image_png_start;
-extern unsigned char _binary_bg_png_start;
+extern unsigned char _binary_data_Textures_center_png_start;
+extern unsigned char _binary_data_Textures_bg_png_start;
 
 int boundaryXLeft = 0;
 int boundaryXRight = 839;
@@ -61,7 +61,7 @@ void playerInit()
     player.x = 419;
     player.y = 418;
     player.speed = 13;
-    player.texture = vita2d_load_PNG_buffer(&_binary_image_png_start);
+    player.texture = vita2d_load_PNG_buffer(&_binary_data_Textures_center_png_start);
 }
 
 void playerInput()
@@ -118,21 +118,21 @@ void draw()
     //Draw the background
     vita2d_draw_texture_scale(bg, 0, 0, 1.0f, 1.0f);
 
-    e = enemies;
+    /*e = enemies;
     for (int i = 0; i < 3; i++)
     {
         e->x = i*64;
         e->y = 32;
         e->w = 128;
         e->h = 128;
-        e->texture = vita2d_load_PNG_buffer(&_binary_image_png_start);
+        e->texture = vita2d_load_PNG_buffer(&_binary_data_Textures_center_png_start);
 
 	    vita2d_draw_texture_scale(e->texture, e->x, e->y, 0.5f, 0.5f);
 
         enemiesLeft++;
         e++;
     }
-
+    */
     //Draw the player
     vita2d_draw_texture_tint_scale(player.texture, player.x, player.y, 0.5f, 0.5f, RGBA8(255,255,255,255));
 
@@ -149,7 +149,7 @@ int main()
     vita2d_set_clear_color(BLACK);
 
     pgf = vita2d_load_default_pgf();
-    bg = vita2d_load_PNG_buffer(&_binary_bg_png_start);
+    bg = vita2d_load_PNG_buffer(&_binary_data_Textures_bg_png_start);
 
     playerInit();
 
