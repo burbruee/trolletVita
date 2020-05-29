@@ -8,6 +8,7 @@ Still working on getting the basic stuff going.
 git clone https://github.com/burbruee/trolletVita.git
 cd trolletVita
 cmake .
-make```
+make
+```
 
 After that you should see trolletVita.vpk built. Transfer to vita over ftp and install with vitaShell.
