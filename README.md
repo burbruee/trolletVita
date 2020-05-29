@@ -11,6 +11,8 @@ After you've installed VitaSDK and added VITASDK to your $PATH, you need to add 
 Follow the "Porting libraries" section of vitasdk.org. <br />
 clone vitasdk/packages, run vita-makepkg in the libvita2d folder and install it with vdpm. <br />
 
+Building trolletVita:
+
 ```
 git clone https://github.com/burbruee/trolletVita.git
 cd trolletVita
