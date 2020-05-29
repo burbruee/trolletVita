@@ -7,9 +7,9 @@ Still working on getting the basic stuff going.
 First of all, you need VitaSDK, follow the instructions on https://vitasdk.org/ 
 
 
-After you've installed VitaSDK and added VITASDK to your $PATH, you need to add libvita2d.
-Follow the "Porting libraries" section of vitasdk.org.
-clone vitasdk/packages, run vita-makepkg in the libvita2d folder and install it with vdpm.
+After you've installed VitaSDK and added VITASDK to your $PATH, you need to add libvita2d. <br />
+Follow the "Porting libraries" section of vitasdk.org. <br />
+clone vitasdk/packages, run vita-makepkg in the libvita2d folder and install it with vdpm. <br />
 
 ```
 git clone https://github.com/burbruee/trolletVita.git
