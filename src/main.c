@@ -38,6 +38,16 @@ typedef struct
     vita2d_texture *texture;
 } Sprite;
 
+enum GameState
+{
+    Title,
+    Playing,
+    Died,
+    Gameover
+};
+
+enum GameState gameState = Title;
+
 #define MAX_ENEMIES 6
 
 Sprite player;
@@ -98,7 +108,7 @@ void playerInput()
     //Start will quit the scene and bring us back
     if (pad.buttons & SCE_CTRL_START)
     {
-        game_playing = 0;
+        gameState = Title;
     }
 
     //Left and right triggers will change out movement speed (debug)
@@ -155,26 +165,30 @@ int main()
 
     while (1)
     {
-        vita2d_start_drawing();
-        vita2d_clear_screen();
-
         sceCtrlPeekBufferPositive(0, &pad, 1);
 
-        vita2d_pgf_draw_text(pgf, 400, 230, RGBA8(255, 255, 255, 255), 1.0f, "Once upon a time...");
-
-        if (pad.buttons & SCE_CTRL_CROSS)
+        if (gameState == Title)
         {
+            //Start the frame
+            vita2d_start_drawing();
             vita2d_clear_screen();
-            game_playing = 1;
-        }
+            
+            
+            vita2d_pgf_draw_text(pgf, 400, 230, RGBA8(255, 255, 255, 255), 1.0f, "Once upon a time...");
 
-        if (game_playing)
-        {
+            if (pad.buttons & SCE_CTRL_CROSS)
+            {
+                gameState = Playing;
+            }
+            
+            //End the frame
             vita2d_end_drawing();
             vita2d_swap_buffers();
             sceDisplayWaitVblankStart();
-
-            while (game_playing)
+        }
+        else if (gameState == Playing)
+        {
+            while (gameState == Playing)
             {
 		        //Start the frame
                 vita2d_start_drawing();
@@ -188,13 +202,18 @@ int main()
                 //End the frame
                 vita2d_end_drawing();
                 vita2d_swap_buffers();
+                sceDisplayWaitVblankStart();
             }
         }
+        else if (gameState == Died)
+        {
 
+        }
+        else if (gameState == Gameover)
+        {
 
-        vita2d_end_drawing();
-        vita2d_swap_buffers();
-        sceDisplayWaitVblankStart();
+        }
+
     }
 
     //Clean up
