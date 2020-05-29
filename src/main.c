@@ -33,58 +33,11 @@
 #include <psp2/kernel/processmgr.h>
 #include <stdlib.h>
 #include <vita2d.h>
-
-#define SCREEN_W 960
-#define SCREEN_H 544
-
-#define BLACK RGBA8(0, 0, 0, 255)
-#define GREEN RGBA8(0, 255, 0, 255)
-#define RED RGBA8(255, 0, 0, 255)
-#define BLUE RGBA8(0, 0, 255, 255)
-#define WHITE RGBA8(255, 255, 255, 255)
-
-extern unsigned char _binary_data_Textures_center_png_start;
-extern unsigned char _binary_data_Textures_bg_png_start;
-
-int boundaryXLeft = 0;
-int boundaryXRight = 839;
-int boundaryYUp = 0;
-int boundaryYDown = 418;
-
-int randx = 0;
-
-vita2d_pgf *pgf;
-SceCtrlData pad;
-
-typedef struct
-{
-    int x;
-    int y;
-    int w;
-    int h;
-    int speed;
-    vita2d_texture *texture;
-} Sprite;
-
-enum GameState
-{
-    Title,
-    Playing,
-    Died,
-    Gameover
-};
-
-enum GameState gameState = Title;
-
-#define MAX_ENEMIES 6
-
-Sprite player;
-Sprite enemies[MAX_ENEMIES];
-
-uint16_t enemiesLeft = 0;
-
-Sprite* e = enemies;
-vita2d_texture *bg;
+#include "defines.h"
+#include "structs.h"
+#include "enums.h"
+#include "data.h"
+#include "globals.h"
 
 void debugInfo()
 {
