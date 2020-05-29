@@ -3,7 +3,12 @@
 trolletVita is a (simple) game I'm working on for PSVita.
 Still working on getting the basic stuff going.
 
-## Build instructions
+## Build instructions (GNU/Linux)
+First of all, you need VitaSDK, follow the instructions on https://vitasdk.org/
+After you've installed VitaSDK and added VITASDK to your $PATH, you need to add libvita2d.
+Follow the "Porting libraries" section of vitasdk.org.
+clone vitasdk/packages, run vita-makepkg in the libvita2d folder and install it with vdpm.
+
 ```
 git clone https://github.com/burbruee/trolletVita.git
 cd trolletVita
