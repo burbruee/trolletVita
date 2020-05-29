@@ -23,8 +23,6 @@ int boundaryYDown = 418;
 
 int randx = 0;
 
-int game_playing;
-
 vita2d_pgf *pgf;
 SceCtrlData pad;
 
@@ -150,7 +148,7 @@ void draw()
 
 void update()
 {
-    playerInput();
+    
 }
 
 int main()
@@ -173,7 +171,6 @@ int main()
             vita2d_start_drawing();
             vita2d_clear_screen();
             
-            
             vita2d_pgf_draw_text(pgf, 400, 230, RGBA8(255, 255, 255, 255), 1.0f, "Once upon a time...");
 
             if (pad.buttons & SCE_CTRL_CROSS)
@@ -195,7 +192,8 @@ int main()
                 vita2d_clear_screen();
 
 		        //Do stuff
-		        draw();
+		        playerInput();
+                draw();
 		        update(); 
                 debugInfo();
 
