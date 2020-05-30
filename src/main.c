@@ -28,173 +28,42 @@
 
 //Testing branch
 
-#include <psp2/display.h>
-#include <psp2/ctrl.h>
-#include <psp2/kernel/processmgr.h>
-#include <stdlib.h>
-#include <vita2d.h>
-#include "defines.h"
-#include "structs.h"
-#include "enums.h"
-#include "data.h"
-#include "globals.h"
-
-void debugInfo()
-{
-                vita2d_pgf_draw_textf(pgf, 10, 30, WHITE, 1.0f, "X: %d", player.x);
-                vita2d_pgf_draw_textf(pgf, 10, 50, WHITE, 1.0f, "Y: %d", player.y);
-                vita2d_pgf_draw_textf(pgf, 10, 70, WHITE, 1.0f, "speed: %d", player.speed);
-                vita2d_pgf_draw_textf(pgf, 10, 90, WHITE, 1.0f, "rand: %d", randx);
-}
-
-void playerInit()
-{
-    player.x = 419;
-    player.y = 418;
-    player.speed = 13;
-    player.texture = vita2d_load_PNG_buffer(&_binary_data_Textures_center_png_start);
-}
-
-void playerInput()
-{
-    sceCtrlPeekBufferPositive(0, &pad, 1);
-
-    if ((pad.buttons & SCE_CTRL_UP) && (player.y > boundaryYUp))
-    {
-        player.y -= player.speed;
-    }
-    else if ((pad.buttons & SCE_CTRL_DOWN) && (player.y < boundaryYDown))
-    {
-        player.y += player.speed;
-    }
-    else if ((pad.buttons & SCE_CTRL_LEFT) && (player.x > boundaryXLeft))
-    {
-        player.x -= player.speed;
-    }
-    else if ((pad.buttons & SCE_CTRL_RIGHT) && (player.x < boundaryXRight))
-    {
-        player.x += player.speed;
-    }
-
-    //Restrict movement so we don't move past left or right of the screen
-    if (player.x < boundaryXLeft)
-        player.x = boundaryXLeft;
-
-    if (player.x > boundaryXRight)
-        player.x = boundaryXRight;
-
-    if (player.y > boundaryYDown)
-        player.y = boundaryYDown;
-
-    //Start will quit the scene and bring us back
-    if (pad.buttons & SCE_CTRL_START)
-    {
-        gameState = Title;
-    }
-
-    //Left and right triggers will change out movement speed (debug)
-    if (pad.buttons & SCE_CTRL_LTRIGGER)
-    {
-        player.speed--;
-    }
-                
-    if (pad.buttons & SCE_CTRL_RTRIGGER)
-    {
-        player.speed++;
-    }
-}
-
-void draw()
-{
-    //Draw the background
-    vita2d_draw_texture_scale(bg, 0, 0, 1.0f, 1.0f);
-
-    /*e = enemies;
-    for (int i = 0; i < 3; i++)
-    {
-        e->x = i*64;
-        e->y = 32;
-        e->w = 128;
-        e->h = 128;
-        e->texture = vita2d_load_PNG_buffer(&_binary_data_Textures_center_png_start);
-
-	    vita2d_draw_texture_scale(e->texture, e->x, e->y, 0.5f, 0.5f);
-
-        enemiesLeft++;
-        e++;
-    }
-    */
-    //Draw the player
-    vita2d_draw_texture_tint_scale(player.texture, player.x, player.y, 0.5f, 0.5f, RGBA8(255,255,255,255));
-
-}
-
-void update()
-{
-    
-}
+#include "main.h"
 
 int main()
 {
-    vita2d_init();
-    vita2d_set_clear_color(BLACK);
-
-    pgf = vita2d_load_default_pgf();
-    bg = vita2d_load_PNG_buffer(&_binary_data_Textures_bg_png_start);
-
-    playerInit();
+    initVita();
 
     while (1)
     {
         sceCtrlPeekBufferPositive(0, &pad, 1);
 
-        if (gameState == Title)
+        switch (gameState)
         {
-            //Start the frame
-            vita2d_start_drawing();
-            vita2d_clear_screen();
-            
-            vita2d_pgf_draw_text(pgf, 400, 230, RGBA8(255, 255, 255, 255), 1.0f, "Once upon a time...");
+            case Title:
+                startFrame();
+                
+                vita2d_pgf_draw_text(pgf, 20, 30, WHITE, 1.0f, "Title");
+                handleInput();
 
-            if (pad.buttons & SCE_CTRL_CROSS)
-            {
+                endFrame();
+            
+            break;
+
+            case Playing:
+                startFrame();
+
+                vita2d_pgf_draw_text(pgf, 20, 30, WHITE, 1.0f, "Playing");
+                handleInput();
+
+                endFrame();
+            
+            break;
+
+            default:
                 gameState = Playing;
-            }
-            
-            //End the frame
-            vita2d_end_drawing();
-            vita2d_swap_buffers();
-            sceDisplayWaitVblankStart();
+            break;
         }
-        else if (gameState == Playing)
-        {
-            while (gameState == Playing)
-            {
-		        //Start the frame
-                vita2d_start_drawing();
-                vita2d_clear_screen();
-
-		        //Do stuff
-		        playerInput();
-                draw();
-		        update(); 
-                debugInfo();
-
-                //End the frame
-                vita2d_end_drawing();
-                vita2d_swap_buffers();
-                sceDisplayWaitVblankStart();
-            }
-        }
-        else if (gameState == Died)
-        {
-
-        }
-        else if (gameState == Gameover)
-        {
-
-        }
-
     }
 
     //Clean up

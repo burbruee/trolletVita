@@ -26,6 +26,9 @@
 * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#ifndef DEFINES_H
+#define DEFINES_H
+
 #define SCREEN_W 960
 #define SCREEN_H 544
 
@@ -35,3 +38,5 @@
 #define BLUE RGBA8(0, 0, 255, 255)
 #define WHITE RGBA8(255, 255, 255, 255)
 #define MAX_ENEMIES 6
+
+#endif

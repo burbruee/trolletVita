@@ -59,6 +59,9 @@ add_custom_command(
 # Add all the files needed to compile here
 add_executable(${PROJECT_NAME}
   src/main.c
+  src/debug.c
+  src/init.c
+  src/input.c
   obj/bg.o
   obj/center.o
 )

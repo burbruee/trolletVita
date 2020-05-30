@@ -26,24 +26,34 @@
 * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef ENUMS_H
-#define ENUMS_H
+#include "init.h"
 
-enum GameState
+void initVita()
 {
-    Title,
-    Playing,
-    Died,
-    Gameover
-};
+    vita2d_init();
+    vita2d_set_clear_color(BLACK);
 
-enum PauseOption
+    loadFont();
+
+    gameState = Title;
+    pauseOption = ResumeGameOption;
+    IS_PAUSED = false;
+}
+
+void loadFont()
 {
-    ResumeGameOption,
-    TitleScreenOption
-};
+    pgf = vita2d_load_default_pgf();
+}
 
-enum GameState gameState;
-enum PauseOption pauseOption;
+void startFrame()
+{
+    vita2d_start_drawing();
+    vita2d_clear_screen();
+}
 
-#endif
+void endFrame()
+{
+    vita2d_end_drawing();
+    vita2d_swap_buffers();
+    sceDisplayWaitVblankStart();
+}

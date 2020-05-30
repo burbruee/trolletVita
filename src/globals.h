@@ -26,18 +26,27 @@
 * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-int boundaryXLeft = 0;
-int boundaryXRight = 839;
-int boundaryYUp = 0;
-int boundaryYDown = 418;
-int randx = 0;
-uint16_t enemiesLeft = 0;
+#ifndef GLOBALS_H
+#define GLOBALS_H
 
-vita2d_texture *bg;
+#include <psp2/display.h>
+#include <psp2/ctrl.h>
+#include <psp2/kernel/processmgr.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <vita2d.h>
+#include "defines.h"
+#include "structs.h"
+
+int randx;
+bool IS_PAUSED;
+
 vita2d_pgf *pgf;
 
 Sprite player;
 Sprite enemies[MAX_ENEMIES];
-Sprite* e = enemies;
+Sprite* e;
 
 SceCtrlData pad;
+
+#endif

@@ -26,24 +26,12 @@
 * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef ENUMS_H
-#define ENUMS_H
+#include "debug.h"
 
-enum GameState
+void debugInfo()
 {
-    Title,
-    Playing,
-    Died,
-    Gameover
-};
-
-enum PauseOption
-{
-    ResumeGameOption,
-    TitleScreenOption
-};
-
-enum GameState gameState;
-enum PauseOption pauseOption;
-
-#endif
+                vita2d_pgf_draw_textf(pgf, 10, 30, WHITE, 1.0f, "X: %d", player.x);
+                vita2d_pgf_draw_textf(pgf, 10, 50, WHITE, 1.0f, "Y: %d", player.y);
+                vita2d_pgf_draw_textf(pgf, 10, 70, WHITE, 1.0f, "speed: %d", player.speed);
+                vita2d_pgf_draw_textf(pgf, 10, 90, WHITE, 1.0f, "rand: %d", randx);
+}

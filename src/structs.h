@@ -26,6 +26,9 @@
 * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#ifndef STRUCTS_H
+#define STRUCTS_H
+
 typedef struct
 {
     int x;
@@ -35,3 +38,5 @@ typedef struct
     int speed;
     vita2d_texture *texture;
 } Sprite;
+
+#endif

@@ -26,24 +26,17 @@
 * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef ENUMS_H
-#define ENUMS_H
+#ifndef INIT_H
+#define INIT_H
 
-enum GameState
-{
-    Title,
-    Playing,
-    Died,
-    Gameover
-};
+#include <vita2d.h>
+#include <stdbool.h>
+#include "globals.h"
+#include "enums.h"
 
-enum PauseOption
-{
-    ResumeGameOption,
-    TitleScreenOption
-};
-
-enum GameState gameState;
-enum PauseOption pauseOption;
+void initVita();
+void loadFont();
+void startFrame();
+void endFrame();
 
 #endif

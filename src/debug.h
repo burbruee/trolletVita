@@ -26,24 +26,11 @@
 * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef ENUMS_H
-#define ENUMS_H
+#ifndef DEBUG_H
+#define DEBUG_H
 
-enum GameState
-{
-    Title,
-    Playing,
-    Died,
-    Gameover
-};
+#include "globals.h"
 
-enum PauseOption
-{
-    ResumeGameOption,
-    TitleScreenOption
-};
-
-enum GameState gameState;
-enum PauseOption pauseOption;
+void debugInfo();
 
 #endif

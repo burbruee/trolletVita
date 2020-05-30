@@ -26,5 +26,10 @@
 * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#ifndef DATA_H
+#define DATA_H
+
 extern unsigned char _binary_data_Textures_center_png_start;
 extern unsigned char _binary_data_Textures_bg_png_start;
+
+#endif
