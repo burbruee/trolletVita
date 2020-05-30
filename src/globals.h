@@ -39,9 +39,16 @@
 #include "structs.h"
 
 int randx;
+int playerx;
+int playery;
+int speedVal;
 bool IS_PAUSED;
 
 vita2d_pgf *pgf;
+vita2d_texture *bg;
+vita2d_texture *blackScreen;
+vita2d_texture *titleScreen;
+vita2d_texture *playerSprite;
 
 Sprite player;
 Sprite enemies[MAX_ENEMIES];

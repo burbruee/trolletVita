@@ -31,6 +31,7 @@
 
 #include "globals.h"
 #include "enums.h"
+#include "init.h"
 
 void handleInput();
 

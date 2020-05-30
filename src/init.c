@@ -34,10 +34,18 @@ void initVita()
     vita2d_set_clear_color(BLACK);
 
     loadFont();
+    resetGame();
+}
 
+void resetGame()
+{
     gameState = Title;
     pauseOption = ResumeGameOption;
     IS_PAUSED = false;
+
+    playerx = SCREEN_W/2-50;
+    playery = SCREEN_H-130;
+    speedVal = 13;
 }
 
 void loadFont()

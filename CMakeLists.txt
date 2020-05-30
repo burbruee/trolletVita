@@ -51,6 +51,14 @@ add_custom_command(
         COMMAND $ENV{VITASDK}/arm-vita-eabi/bin/ld -r -b binary -o obj/bg.o data/Textures/bg.png
         DEPENDS data/Textures/bg.png)
 add_custom_command(
+        OUTPUT obj/black.o
+        COMMAND $ENV{VITASDK}/arm-vita-eabi/bin/ld -r -b binary -o obj/black.o data/Textures/black.png
+        DEPENDS data/Textures/black.png)
+add_custom_command(
+        OUTPUT obj/title.o
+        COMMAND $ENV{VITASDK}/arm-vita-eabi/bin/ld -r -b binary -o obj/title.o data/Textures/title.png
+        DEPENDS data/Textures/title.png)
+add_custom_command(
         OUTPUT obj/center.o
         COMMAND $ENV{VITASDK}/arm-vita-eabi/bin/ld -r -b binary -o obj/center.o data/Textures/center.png
         DEPENDS data/Textures/center.png)
@@ -63,6 +71,8 @@ add_executable(${PROJECT_NAME}
   src/init.c
   src/input.c
   obj/bg.o
+  obj/black.o
+  obj/title.o
   obj/center.o
 )
 

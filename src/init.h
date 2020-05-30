@@ -35,6 +35,7 @@
 #include "enums.h"
 
 void initVita();
+void resetGame();
 void loadFont();
 void startFrame();
 void endFrame();

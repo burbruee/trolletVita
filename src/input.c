@@ -44,6 +44,7 @@ void handleInput()
             {
                 IS_PAUSED = true;
             }
+
             if (IS_PAUSED)
             {
                 //pauseOption = ResumeGameOption;
@@ -82,11 +83,27 @@ void handleInput()
                     }
                     else if (pad.buttons & SCE_CTRL_CROSS)
                     {
-                        IS_PAUSED = false;
-                        gameState = Title;
+                        resetGame();
                         sceKernelDelayThread(100000);
                     }
                 }
+            }
+            else
+            {
+                if (pad.buttons & SCE_CTRL_LEFT)
+                {
+                    playerx -= speedVal;
+                }
+                else if (pad.buttons & SCE_CTRL_RIGHT)
+                {
+                    playerx += speedVal;
+                }
+
+                if (playerx < 0)
+                    playerx = 0;
+
+                if (playerx > 839)
+                    playerx = 839;
             }
         break;
 

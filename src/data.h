@@ -31,5 +31,7 @@
 
 extern unsigned char _binary_data_Textures_center_png_start;
 extern unsigned char _binary_data_Textures_bg_png_start;
+extern unsigned char _binary_data_Textures_black_png_start;
+extern unsigned char _binary_data_Textures_title_png_start;
 
 #endif

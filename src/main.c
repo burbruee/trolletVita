@@ -34,6 +34,11 @@ int main()
 {
     initVita();
 
+    bg = vita2d_load_PNG_buffer(&_binary_data_Textures_bg_png_start);
+    titleScreen = vita2d_load_PNG_buffer(&_binary_data_Textures_title_png_start);
+    playerSprite = vita2d_load_PNG_buffer(&_binary_data_Textures_center_png_start);
+    blackScreen = vita2d_load_PNG_buffer(&_binary_data_Textures_black_png_start);
+
     while (1)
     {
         sceCtrlPeekBufferPositive(0, &pad, 1);
@@ -43,7 +48,9 @@ int main()
             case Title:
                 startFrame();
                 
+                vita2d_draw_texture(titleScreen, 0, 0);
                 vita2d_pgf_draw_text(pgf, 20, 30, WHITE, 1.0f, "Title");
+                vita2d_pgf_draw_text(pgf, (SCREEN_W/2) - 40, (SCREEN_H/2) + 180, RGBA8(0xFF,0xD8,0x3A,0xFF), 1.0f, "Start game");
                 handleInput();
 
                 endFrame();
@@ -53,7 +60,13 @@ int main()
             case Playing:
                 startFrame();
 
+                vita2d_draw_texture(bg, 0, 0);
                 vita2d_pgf_draw_text(pgf, 20, 30, WHITE, 1.0f, "Playing");
+                vita2d_draw_texture_scale(playerSprite, playerx, playery, 0.5f, 0.5f);
+                if (IS_PAUSED)
+                {
+                    vita2d_draw_texture_tint(blackScreen, 0, 0, RGBA8(0xFF, 0xFF, 0xFF, 0x80));
+                }
                 handleInput();
 
                 endFrame();

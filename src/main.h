@@ -34,5 +34,6 @@
 #include "init.h"
 #include "debug.h"
 #include "input.h"
+#include "data.h"
 
 #endif
